@@ -289,13 +289,13 @@ const essayQuestions = [
 function ScoreBadge({ score, total }) {
   const percentage = total === 0 ? 0 : Math.round((score / total) * 100);
   return (
-    <div className="flex items-center gap-3 rounded-2xl bg-white p-4 shadow-sm ring-1 ring-slate-200">
-      <div className="rounded-full bg-slate-100 p-3">
-        <Award className="h-6 w-6" />
+    <div className="flex w-full min-w-0 items-center gap-3 rounded-2xl bg-white p-4 shadow-sm ring-1 ring-slate-200 sm:w-auto md:min-w-64">
+      <div className="shrink-0 rounded-full bg-slate-100 p-3">
+        <Award className="h-5 w-5 sm:h-6 sm:w-6" />
       </div>
-      <div>
+      <div className="min-w-0">
         <p className="text-sm text-slate-500">Nilai otomatis</p>
-        <p className="text-2xl font-bold text-slate-900">{score}/{total} <span className="text-base font-semibold text-slate-500">({percentage}%)</span></p>
+        <p className="text-xl font-bold text-slate-900 sm:text-2xl">{score}/{total} <span className="text-sm font-semibold text-slate-500 sm:text-base">({percentage}%)</span></p>
       </div>
     </div>
   );
@@ -330,54 +330,54 @@ export default function LatihanSoalPaiInteraktif() {
   }
 
   return (
-    <main className="min-h-screen bg-slate-50 px-4 py-8 text-slate-900 sm:px-6 lg:px-8">
-      <div className="mx-auto max-w-5xl space-y-8">
-        <motion.section initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} className="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200 sm:p-8">
+    <main className="min-h-screen bg-slate-50 px-3 py-4 text-slate-900 sm:px-5 sm:py-6 lg:px-8 lg:py-8">
+      <div className="mx-auto flex w-full max-w-5xl flex-col gap-6 sm:gap-8">
+        <motion.section initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} className="rounded-2xl bg-white p-4 shadow-sm ring-1 ring-slate-200 sm:rounded-3xl sm:p-6 lg:p-8">
           <div className="flex flex-col gap-5 md:flex-row md:items-center md:justify-between">
-            <div>
+            <div className="min-w-0">
               <div className="mb-3 inline-flex items-center gap-2 rounded-full bg-slate-100 px-3 py-1 text-sm font-medium text-slate-700">
                 <BookOpen className="h-4 w-4" /> PAI BP Kelas 11
               </div>
-              <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">Latihan Soal Interaktif Sesuai Kisi-Kisi</h1>
-              <p className="mt-3 max-w-2xl text-slate-600">Materi: jujur, ikhlas, zuhud, pernikahan, ayat Al-Qur'an, hadis, akhlak terpuji, dan tokoh pembaru Islam Indonesia. Pilihan ganda dan pencocokan dinilai otomatis, sedangkan essay dapat dicek dengan kunci jawaban.</p>
+              <h1 className="break-words text-2xl font-bold tracking-tight sm:text-3xl md:text-4xl">Latihan Soal Interaktif Sesuai Kisi-Kisi</h1>
+              <p className="mt-3 max-w-2xl text-sm leading-6 text-slate-600 sm:text-base">Materi: jujur, ikhlas, zuhud, pernikahan, ayat Al-Qur'an, hadis, akhlak terpuji, dan tokoh pembaru Islam Indonesia. Pilihan ganda dan pencocokan dinilai otomatis, sedangkan essay dapat dicek dengan kunci jawaban.</p>
             </div>
             <ScoreBadge score={autoScore} total={totalAuto} />
           </div>
-          <div className="mt-6 flex flex-wrap gap-3">
-            <button onClick={() => setShowResult(true)} className="rounded-2xl bg-slate-900 px-5 py-3 font-semibold text-white shadow-sm transition hover:bg-slate-700">Cek Jawaban</button>
-            <button onClick={resetAll} className="inline-flex items-center gap-2 rounded-2xl bg-white px-5 py-3 font-semibold text-slate-900 shadow-sm ring-1 ring-slate-300 transition hover:bg-slate-100"><RotateCcw className="h-4 w-4" /> Ulangi</button>
+          <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+            <button onClick={() => setShowResult(true)} className="w-full rounded-xl bg-slate-900 px-5 py-3 font-semibold text-white shadow-sm transition hover:bg-slate-700 sm:w-auto sm:rounded-2xl">Cek Jawaban</button>
+            <button onClick={resetAll} className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-white px-5 py-3 font-semibold text-slate-900 shadow-sm ring-1 ring-slate-300 transition hover:bg-slate-100 sm:w-auto sm:rounded-2xl"><RotateCcw className="h-4 w-4" /> Ulangi</button>
           </div>
         </motion.section>
 
         <section className="space-y-4">
-          <h2 className="text-2xl font-bold">A. Pilihan Ganda</h2>
+          <h2 className="text-xl font-bold sm:text-2xl">A. Pilihan Ganda</h2>
           {mcqQuestions.map((q) => {
             const selected = answers[q.no];
             const isCorrect = selected === q.answer;
             return (
-              <div key={q.no} className="rounded-3xl bg-white p-5 shadow-sm ring-1 ring-slate-200">
+              <div key={q.no} className="rounded-2xl bg-white p-4 shadow-sm ring-1 ring-slate-200 sm:rounded-3xl sm:p-5">
                 <div className="mb-4 flex flex-wrap items-center gap-2">
                   <span className="rounded-full bg-slate-900 px-3 py-1 text-sm font-bold text-white">No. {q.no}</span>
                   <span className="rounded-full bg-slate-100 px-3 py-1 text-sm font-medium text-slate-700">{q.materi}</span>
                   <span className="rounded-full bg-slate-100 px-3 py-1 text-sm font-medium text-slate-700">{q.level}</span>
                 </div>
-                <p className="mb-4 text-lg font-semibold">{q.question}</p>
+                <p className="mb-4 break-words text-base font-semibold leading-7 sm:text-lg">{q.question}</p>
                 <div className="grid gap-3">
                   {q.options.map((option, index) => {
                     const chosen = selected === index;
                     const correctOption = showResult && index === q.answer;
                     const wrongChosen = showResult && chosen && index !== q.answer;
                     return (
-                      <button key={option} onClick={() => setAnswers({ ...answers, [q.no]: index })} className={`flex items-center justify-between rounded-2xl border p-4 text-left transition ${chosen ? "border-slate-900 bg-slate-100" : "border-slate-200 bg-white hover:bg-slate-50"} ${correctOption ? "border-green-500 bg-green-50" : ""} ${wrongChosen ? "border-red-500 bg-red-50" : ""}`}>
-                        <span><b>{String.fromCharCode(65 + index)}.</b> {option}</span>
-                        {showResult && correctOption && <CheckCircle2 className="h-5 w-5 text-green-600" />}
-                        {showResult && wrongChosen && <XCircle className="h-5 w-5 text-red-600" />}
+                      <button key={option} onClick={() => setAnswers({ ...answers, [q.no]: index })} className={`flex w-full items-start justify-between gap-3 rounded-2xl border p-3 text-left leading-6 transition sm:p-4 ${chosen ? "border-slate-900 bg-slate-100" : "border-slate-200 bg-white hover:bg-slate-50"} ${correctOption ? "border-green-500 bg-green-50" : ""} ${wrongChosen ? "border-red-500 bg-red-50" : ""}`}>
+                        <span className="min-w-0 break-words"><b>{String.fromCharCode(65 + index)}.</b> {option}</span>
+                        {showResult && correctOption && <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-green-600" />}
+                        {showResult && wrongChosen && <XCircle className="mt-0.5 h-5 w-5 shrink-0 text-red-600" />}
                       </button>
                     );
                   })}
                 </div>
                 {showResult && (
-                  <div className={`mt-4 rounded-2xl p-4 ${isCorrect ? "bg-green-50 text-green-800" : "bg-red-50 text-red-800"}`}>
+                  <div className={`mt-4 rounded-2xl p-4 text-sm leading-6 sm:text-base ${isCorrect ? "bg-green-50 text-green-800" : "bg-red-50 text-red-800"}`}>
                     <b>{isCorrect ? "Benar." : "Belum tepat."}</b> {q.explanation}
                   </div>
                 )}
@@ -387,26 +387,26 @@ export default function LatihanSoalPaiInteraktif() {
         </section>
 
         <section className="space-y-4">
-          <h2 className="flex items-center gap-2 text-2xl font-bold"><LinkIcon className="h-6 w-6" /> B. Menjodohkan / Pencocokan</h2>
+          <h2 className="flex items-center gap-2 text-xl font-bold sm:text-2xl"><LinkIcon className="h-5 w-5 shrink-0 sm:h-6 sm:w-6" /> <span className="min-w-0 break-words">B. Menjodohkan / Pencocokan</span></h2>
           {matchingQuestions.map((q) => {
             const current = matchAnswers[q.no] || {};
             const allCorrect = Object.entries(q.answer).every(([leftIndex, rightIndex]) => Number(current[leftIndex]) === rightIndex);
             return (
-              <div key={q.no} className="rounded-3xl bg-white p-5 shadow-sm ring-1 ring-slate-200">
+              <div key={q.no} className="rounded-2xl bg-white p-4 shadow-sm ring-1 ring-slate-200 sm:rounded-3xl sm:p-5">
                 <div className="mb-4 flex flex-wrap items-center gap-2">
                   <span className="rounded-full bg-slate-900 px-3 py-1 text-sm font-bold text-white">No. {q.no}</span>
                   <span className="rounded-full bg-slate-100 px-3 py-1 text-sm font-medium text-slate-700">C2</span>
                 </div>
-                <p className="mb-4 text-lg font-semibold">{q.title}</p>
+                <p className="mb-4 break-words text-base font-semibold leading-7 sm:text-lg">{q.title}</p>
                 <div className="space-y-3">
                   {q.left.map((leftItem, leftIndex) => {
                     const selectedRight = current[leftIndex];
                     const correct = showResult && Number(selectedRight) === q.answer[leftIndex];
                     const wrong = showResult && selectedRight !== undefined && Number(selectedRight) !== q.answer[leftIndex];
                     return (
-                      <div key={leftItem} className={`grid gap-3 rounded-2xl border p-4 md:grid-cols-[1fr_1.5fr] ${correct ? "border-green-500 bg-green-50" : wrong ? "border-red-500 bg-red-50" : "border-slate-200 bg-white"}`}>
-                        <div className="font-semibold">{leftItem}</div>
-                        <select value={selectedRight ?? ""} onChange={(e) => setMatchAnswers({ ...matchAnswers, [q.no]: { ...current, [leftIndex]: Number(e.target.value) } })} className="rounded-xl border border-slate-300 bg-white p-3 outline-none focus:ring-2 focus:ring-slate-400">
+                      <div key={leftItem} className={`grid gap-3 rounded-2xl border p-3 sm:grid-cols-[minmax(0,0.9fr)_minmax(0,1.4fr)] sm:p-4 ${correct ? "border-green-500 bg-green-50" : wrong ? "border-red-500 bg-red-50" : "border-slate-200 bg-white"}`}>
+                        <div className="min-w-0 break-words font-semibold leading-6">{leftItem}</div>
+                        <select value={selectedRight ?? ""} onChange={(e) => setMatchAnswers({ ...matchAnswers, [q.no]: { ...current, [leftIndex]: Number(e.target.value) } })} className="min-w-0 rounded-xl border border-slate-300 bg-white p-3 text-sm outline-none focus:ring-2 focus:ring-slate-400 sm:text-base">
                           <option value="" disabled>Pilih pasangan jawaban</option>
                           {q.right.map((rightItem, rightIndex) => <option key={rightItem} value={rightIndex}>{rightItem}</option>)}
                         </select>
@@ -415,9 +415,9 @@ export default function LatihanSoalPaiInteraktif() {
                   })}
                 </div>
                 {showResult && (
-                  <div className={`mt-4 rounded-2xl p-4 ${allCorrect ? "bg-green-50 text-green-800" : "bg-red-50 text-red-800"}`}>
+                  <div className={`mt-4 rounded-2xl p-4 text-sm leading-6 sm:text-base ${allCorrect ? "bg-green-50 text-green-800" : "bg-red-50 text-red-800"}`}>
                     <b>{allCorrect ? "Semua pasangan benar." : "Masih ada pasangan yang salah."}</b>
-                    <div className="mt-2 text-sm">
+                    <div className="mt-2 break-words text-sm">
                       Kunci: {q.left.map((leftItem, index) => `${leftItem} = ${q.right[q.answer[index]]}`).join("; ")}
                     </div>
                   </div>
@@ -428,17 +428,17 @@ export default function LatihanSoalPaiInteraktif() {
         </section>
 
         <section className="space-y-4">
-          <h2 className="flex items-center gap-2 text-2xl font-bold"><PenLine className="h-6 w-6" /> C. Essay / Isian Singkat</h2>
+          <h2 className="flex items-center gap-2 text-xl font-bold sm:text-2xl"><PenLine className="h-5 w-5 shrink-0 sm:h-6 sm:w-6" /> <span className="min-w-0 break-words">C. Essay / Isian Singkat</span></h2>
           {essayQuestions.map((q) => (
-            <div key={q.no} className="rounded-3xl bg-white p-5 shadow-sm ring-1 ring-slate-200">
+            <div key={q.no} className="rounded-2xl bg-white p-4 shadow-sm ring-1 ring-slate-200 sm:rounded-3xl sm:p-5">
               <div className="mb-4 flex flex-wrap items-center gap-2">
                 <span className="rounded-full bg-slate-900 px-3 py-1 text-sm font-bold text-white">No. {q.no}</span>
                 <span className="rounded-full bg-slate-100 px-3 py-1 text-sm font-medium text-slate-700">{q.materi}</span>
               </div>
-              <p className="mb-4 text-lg font-semibold">{q.question}</p>
-              <textarea value={essays[q.no] || ""} onChange={(e) => setEssays({ ...essays, [q.no]: e.target.value })} placeholder="Tulis jawabanmu di sini..." className="min-h-28 w-full rounded-2xl border border-slate-300 p-4 outline-none focus:ring-2 focus:ring-slate-400" />
+              <p className="mb-4 break-words text-base font-semibold leading-7 sm:text-lg">{q.question}</p>
+              <textarea value={essays[q.no] || ""} onChange={(e) => setEssays({ ...essays, [q.no]: e.target.value })} placeholder="Tulis jawabanmu di sini..." className="min-h-28 w-full rounded-2xl border border-slate-300 p-3 text-sm outline-none focus:ring-2 focus:ring-slate-400 sm:p-4 sm:text-base" />
               {showResult && (
-                <div className="mt-4 rounded-2xl bg-amber-50 p-4 text-amber-900">
+                <div className="mt-4 rounded-2xl bg-amber-50 p-4 text-sm leading-6 text-amber-900 sm:text-base">
                   <b>Kunci/pedoman jawaban:</b> {q.key}
                 </div>
               )}

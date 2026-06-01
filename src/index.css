@@ -1,1 +1,15 @@
 @import "tailwindcss";
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  min-width: 320px;
+}
+
+button,
+select,
+textarea {
+  font: inherit;
+}
